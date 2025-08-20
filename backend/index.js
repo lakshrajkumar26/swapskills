@@ -42,37 +42,61 @@ const server = http.createServer(app);
 // Attach socket.io
 const io = socketio(server,{
     cors:{
-        origin: "*",
+        origin: "http://localhost:5173",
         methods :["GET","POST","PUT"]
     }
 });
 
-io.on("connection",(socket)=>{
-    console.log(`New Client Conenccted ${socket.id}`)
+// io.on("connection",(socket)=>{
+//     console.log(`New Client Conenccted ${socket.id}`)
    
-      //when user from froentend "do Welcome" ,and the data 
-      socket.emit("welcome","naya user aaya h")
-   //aab frontend m .on"welcome" ,(data)=>{con.log(data)}
+//       //when user from froentend "do Welcome" ,and the data 
+//       socket.emit("welcome","naya user aaya h")
+//    //aab frontend m .on"welcome" ,(data)=>{con.log(data)}
 
-    //to others 
-    socket.broadcast.emit("others",`${socket.id} : username has joined and he dont know bacasuse broadcast.emit`)
+//     //to others 
+//     socket.broadcast.emit("others",`${socket.id} : username has joined and he dont know bacasuse broadcast.emit`)
 
-    //for real time logic / Join a chat room
+//     //for real time logic / Join a chat room
+//   socket.on("joinRoom", (chatId) => {
+//     socket.join(chatId);
+//     console.log(`User joined chat ${chatId}`);
+//   });
+
+//   // When a user sends message
+//   socket.on("sendMessage", (msg) => {
+//     // broadcast to everyone in the chat room
+//     io.to(msg.chat).emit("receiveMessage", msg);
+//   });
+
+//     socket.on("disconnect",()=>{
+//         console.log(`socket discoennted ${socket.id}`)
+//     })
+// })
+
+io.on("connection", (socket) => {
+  console.log(`✅ Client connected: ${socket.id}`);
+
+  // Welcome just for testing
+  socket.emit("welcome", "🎉 You are connected to the server");
+
+  // Join chat room
   socket.on("joinRoom", (chatId) => {
     socket.join(chatId);
-    console.log(`User joined chat ${chatId}`);
+    console.log(`User ${socket.id} joined chat ${chatId}`);
   });
 
-  // When a user sends message
+  // Handle new message
   socket.on("sendMessage", (msg) => {
-    // broadcast to everyone in the chat room
-    io.to(msg.chat).emit("receiveMessage", msg);
+    console.log("📩 Message received:", msg);
+    // use msg.chatId instead of msg.chat
+    io.to(msg.chatId).emit("receiveMessage", msg);
   });
-  
-    socket.on("disconnect",()=>{
-        console.log(`socket discoennted ${socket.id}`)
-    })
-})
+
+  socket.on("disconnect", () => {
+    console.log(`❌ Disconnected: ${socket.id}`);
+  });
+});
 
 
 server.listen(PORT , () => {

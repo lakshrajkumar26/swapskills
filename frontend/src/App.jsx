@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import FindMatch from "./components/pages/FindMatch";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import NotFound from "./components/pages/Page404";
-import Socketio from "./components/layout/Socketio";
+// import Socketio from "./components/layout/Socketio";
 import Chat from "./components/pages/ChatPage"
 import About from "./components/pages/AboutUs";
 
@@ -49,8 +49,7 @@ function App() {
       <NavBar user={user} setUser={setUser}/>
       <Layout>
         <Routes>
-        {/* <Route path="/chat" element={<Socketio/>} /> */}
-          <Route path="*" element={<NotFound/>} />
+        <Route path="/" element={<HomePage/>} />
           <Route path="*" element={<NotFound/>} />
           <Route path="/aboutus" element={<About/>} />
           <Route path="/dashboard" element={<DashBoard/>} />
