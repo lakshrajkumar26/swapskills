@@ -15,7 +15,8 @@ Built with the **MERN stack**, it enables fair skill matching, leaderboard track
 - 📊 **Progress Tracking** → Tracks user matches, ranks, and completed sessions.  (upcoming) 
 - 🎮 **Gamified Learning** → Entry-based quiz battles with fair rank-based matching.  (upcoming) 
 - 📱 **Responsive UI** → Built with **React.js + TailwindCSS** for a modern experience.
--     **videoCalling** -> Directly connects to people  and swap your skills using WebRTC (upcoming) 
+- **videoCalling** -> Directly connects to people  and swap your skills using WebRTC (upcoming)
+- **Ratings** -> Rates User according to their skills and performance  (upcoming) 
 
 ---
 
