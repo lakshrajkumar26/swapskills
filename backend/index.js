@@ -7,7 +7,8 @@ const dotenv = require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 8080
 const CORS = require("cors");
-
+const helmet = require("helmet");
+const morgan = require("morgan");
 const user = require("./models/User");
 const db = require('./config/dbConnection');
 const authRoutes = require('./routes/authRoutes');
@@ -15,6 +16,12 @@ const userRouters = require('./routes/userRoutes');
 const adminRoutes = require("./routes/adminRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
+
+
+app.use(helmet());
+app.use(morgan("dev")); 
+
+
 app.use(CORS({
     origin:"http://localhost:5173",
     methods:["GET","POST","PUT"],
