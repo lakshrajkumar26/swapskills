@@ -17,13 +17,13 @@ const adminRoutes = require("./routes/adminRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 
-
+const allowedOrigin =["http://localhost:5173",process.env.FRONTEND_URL]
 app.use(helmet());
 app.use(morgan("dev")); 
 
 
 app.use(CORS({
-    origin:"http://localhost:5173",
+    origin:allowedOrigin,
     methods:["GET","POST","PUT"],
      credentials: true,  
 }))
