@@ -1,7 +1,7 @@
 // src/socket.js
 import { io } from "socket.io-client";
 
-const URL = "http://localhost:8080"; // backend server
+const URL = "https://swapskills.onrender.com"; // backend server
 const token = localStorage.getItem("token");
 
 export const socket = io(URL, {
