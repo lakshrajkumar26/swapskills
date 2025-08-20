@@ -11,10 +11,11 @@ Built with the **MERN stack**, it enables fair skill matching, leaderboard track
 - 🔑 **Skill Matching Engine** → Pairs users based on rank, experience, and categories.  
 - 💬 **Real-Time Collaboration** → WebSockets for chat, quizzes, and multiplayer interactions.  
 - 🛡 **Secure Authentication** → JWT & bcrypt-based user login and session handling.  
-- 🏆 **Leaderboards & Points System** → Rewards, entry points, and global ranking.  
-- 📊 **Progress Tracking** → Tracks user matches, ranks, and completed sessions.  
-- 🎮 **Gamified Learning** → Entry-based quiz battles with fair rank-based matching.  
-- 📱 **Responsive UI** → Built with **React.js + TailwindCSS** for a modern experience.  
+- 🏆 **Leaderboards & Points System** → Rewards, entry points, and global ranking.  (upcoming) 
+- 📊 **Progress Tracking** → Tracks user matches, ranks, and completed sessions.  (upcoming) 
+- 🎮 **Gamified Learning** → Entry-based quiz battles with fair rank-based matching.  (upcoming) 
+- 📱 **Responsive UI** → Built with **React.js + TailwindCSS** for a modern experience.
+-     **videoCalling** -> Directly connects to people  and swap your skills using WebRTC (upcoming) 
 
 ---
 
