@@ -49,7 +49,7 @@ const server = http.createServer(app);
 // Attach socket.io
 const io = socketio(server,{
     cors:{
-        origin: "http://localhost:5173",
+        origin: allowedOrigin,
         methods :["GET","POST","PUT"]
     }
 });
