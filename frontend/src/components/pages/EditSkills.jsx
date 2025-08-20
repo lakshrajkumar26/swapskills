@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { TextField, Button, Box } from "@mui/material";
 import API from "../../api/axios";
 
-const UpdateProfile = ({ user, setUser, closeModal }) => {
+const EditSkills = ({ user, setUser, closeModal }) => {
   const [formData, setFormData] = useState({
-    username: user?.username || "",
-    email: user?.email || "",
+    skillsOffered: user?.skillsOffered.join(",") || "",
+    skillsWanted: user?.skillsWanted.join(",") || "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -27,8 +27,11 @@ const UpdateProfile = ({ user, setUser, closeModal }) => {
       const token = localStorage.getItem("token");
 
       const res = await API.put(
-        "/api/users/updateprofile",
-        formData,
+        "/api/users/editskills",
+        {
+          skillsOffered: formData.skillsOffered.split(",").map((s) => s.trim()),
+          skillsWanted: formData.skillsWanted.split(",").map((s) => s.trim()),
+        },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -48,31 +51,35 @@ const UpdateProfile = ({ user, setUser, closeModal }) => {
     <form onSubmit={handleSubmit}>
       <Box display="flex" flexDirection="column" gap={2}>
         <TextField
-          label="Username"
-          name="username"
-          value={formData.username}
+          label="Skills Offered"
+          name="skillsOffered"
+          value={formData.skillsOffered}
           onChange={handleChange}
           fullWidth
           sx={{
-            input: { color: "white" },          // input text
-            label: { color: "white" },          // label text
+            input: { color: "white" }, // input text
+            label: { color: "white" }, // label text
             "& .MuiInput-underline:before": { borderBottomColor: "white" }, // underline
-            "& .MuiInput-underline:hover:before": { borderBottomColor: "white" },
+            "& .MuiInput-underline:hover:before": {
+              borderBottomColor: "white",
+            },
             "& .MuiInput-underline:after": { borderBottomColor: "white" },
           }}
         />
         <TextField
-          label="Email"
-          name="email"
-          type="email"
-          value={formData.email}
+          label="Skills Wanted"
+          name="skillsWanted"
+          type=""
+          value={formData.skillsWanted}
           onChange={handleChange}
           fullWidth
           sx={{
             input: { color: "white" },
             label: { color: "white" },
             "& .MuiInput-underline:before": { borderBottomColor: "white" },
-            "& .MuiInput-underline:hover:before": { borderBottomColor: "white" },
+            "& .MuiInput-underline:hover:before": {
+              borderBottomColor: "white",
+            },
             "& .MuiInput-underline:after": { borderBottomColor: "white" },
           }}
         />
@@ -93,4 +100,4 @@ const UpdateProfile = ({ user, setUser, closeModal }) => {
   );
 };
 
-export default UpdateProfile;
+export default EditSkills;

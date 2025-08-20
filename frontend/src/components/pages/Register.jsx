@@ -59,9 +59,9 @@ const Register = () => {
             Vaid PR Blogs
           </span>
         </div>
-        <button className="p-2 rounded-lg hover:bg-gray-800 transition">
+        {/* <button className="p-2 rounded-lg hover:bg-gray-800 transition">
           🌙
-        </button>
+        </button> */}
       </nav>
 
       {/* Background Blurs */}

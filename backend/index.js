@@ -11,12 +11,13 @@ const CORS = require("cors");
 const user = require("./models/User");
 const db = require('./config/dbConnection');
 const authRoutes = require('./routes/authRoutes');
-const userRouters = require('./routes/UserRoutes');
+const userRouters = require('./routes/userRoutes');
 const adminRoutes = require("./routes/adminRoutes");
-
+const chatRoutes = require("./routes/chatRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 app.use(CORS({
     origin:"http://localhost:5173",
-    methods:["GET","POST"],
+    methods:["GET","POST","PUT"],
      credentials: true,  
 }))
 app.use(express.json());
@@ -31,8 +32,8 @@ app.get("/", (req,res)=>{
 app.use('/api/auth',authRoutes);
 app.use('/api/users',userRouters);
 app.use('/api/admin',adminRoutes);
-
-
+app.use('/api/chat',chatRoutes);
+app.use('/api/message',messageRoutes);
 
 
 const server = http.createServer(app);
@@ -42,22 +43,38 @@ const server = http.createServer(app);
 const io = socketio(server,{
     cors:{
         origin: "*",
-        methods :["GET","POST"]
+        methods :["GET","POST","PUT"]
     }
 });
 
 io.on("connection",(socket)=>{
     console.log(`New Client Conenccted ${socket.id}`)
+   
+      //when user from froentend "do Welcome" ,and the data 
+      socket.emit("welcome","naya user aaya h")
+   //aab frontend m .on"welcome" ,(data)=>{con.log(data)}
 
+    //to others 
+    socket.broadcast.emit("others",`${socket.id} : username has joined and he dont know bacasuse broadcast.emit`)
+
+    //for real time logic / Join a chat room
+  socket.on("joinRoom", (chatId) => {
+    socket.join(chatId);
+    console.log(`User joined chat ${chatId}`);
+  });
+
+  // When a user sends message
+  socket.on("sendMessage", (msg) => {
+    // broadcast to everyone in the chat room
+    io.to(msg.chat).emit("receiveMessage", msg);
+  });
+  
     socket.on("disconnect",()=>{
         console.log(`socket discoennted ${socket.id}`)
     })
 })
 
-// app.listen( PORT , ()=>{
-//     console.info(`Server is runnning at port ${PORT}` )
-// })
-//listen the server 
+
 server.listen(PORT , () => {
     console.log(`Server is running at ${PORT}`);
 })

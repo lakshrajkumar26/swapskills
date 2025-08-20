@@ -44,9 +44,22 @@ const Navbar = ( {user,setUser }) => {
         <Link to="/" className="hover:text-blue-400">
           Home
         </Link>
+         <Link to="/aboutus" className="hover:text-blue-400">
+          About Us
+        </Link>
+        
 
        {user && ( <Link to="/dashboard" className="hover:text-blue-400">
           DashBoard
+        </Link>)}
+        
+
+        {user && ( <Link to="/chat" className="hover:text-blue-400">
+          Chat
+        </Link>)}
+
+        {user && ( <Link to="/findmatch" className="hover:text-blue-400">
+          Find your match 
         </Link>)}
 
         {!user && (

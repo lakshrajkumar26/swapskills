@@ -11,6 +11,11 @@ import ProfilePage from "./components/pages/ProfilePage";
 import API from "./api/axios";
 import { useEffect } from "react";
 import FindMatch from "./components/pages/FindMatch";
+import ForgotPassword from "./components/pages/ForgotPassword";
+import NotFound from "./components/pages/Page404";
+import Socketio from "./components/layout/Socketio";
+import Chat from "./components/pages/ChatPage"
+import About from "./components/pages/AboutUs";
 
 function App() {
  const [user, setUser] = useState(null);
@@ -40,15 +45,23 @@ function App() {
   return (
     <Router>
       {/* <NavBar/> */}
+      
       <NavBar user={user} setUser={setUser}/>
       <Layout>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+        {/* <Route path="/chat" element={<Socketio/>} /> */}
+          <Route path="*" element={<NotFound/>} />
+          <Route path="*" element={<NotFound/>} />
+          <Route path="/aboutus" element={<About/>} />
           <Route path="/dashboard" element={<DashBoard/>} />
           <Route path="/login" element={<LoginPage  setUser={setUser}/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<ProfilePage/>} />
           <Route path="/findmatch" element={<FindMatch/>} />
+           <Route path="/chat" element={<Chat/>} />
+       
+       <Route path="/forgotpassword" element={<ForgotPassword/>} />
+       
         </Routes>
       </Layout>
     </Router>

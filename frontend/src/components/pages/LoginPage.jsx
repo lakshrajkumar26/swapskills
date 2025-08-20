@@ -70,9 +70,9 @@ const LoginPage = ({ setUser }) => {
               Vaid PR Blogs
             </span>
           </div>
-          <button className="p-2 rounded-lg hover:bg-gray-800 transition">
+          {/* <button className="p-2 rounded-lg hover:bg-gray-800 transition">
             🌙
-          </button>
+          </button> */}
         </nav>
 
         {/* Background Blurs */}
@@ -85,11 +85,11 @@ const LoginPage = ({ setUser }) => {
             <div
               className=" w-full max-w-md 
                       p-8 space-y-6 
-                     bg-white/80 dark:bg-gray-800/80 
+                     bg-gray-900/80 
                  backdrop-blur-lg 
                        rounded-2xl 
                          shadow-xl dark:shadow-2xl 
-                      border border-gray-200/50 dark:border-gray-700/50 
+                      border  dark:border-gray-700/50 
                          form-container 
                      animate-fade-in-up"
             >
@@ -146,6 +146,7 @@ const LoginPage = ({ setUser }) => {
                 <Link to="/register" className="text-blue-400 hover:underline">
                   Sign Up
                 </Link>
+                <Link to="/forgotpassword" className="p-5 hover:underline text-blue-400">forgot password</Link>
               </p>
             </div>
           </div>

@@ -14,11 +14,12 @@ import UpdateProfile from "../pages/UpdateProfile";
 import { Person, Mail, CalendarToday, Star } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import API from "../../api/axios";
+import EditSkills from "./EditSkills";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
-
+  const [openSkills, setOpenSkills] = useState(false);
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -111,7 +112,7 @@ const ProfilePage = () => {
                 </Typography>
               </Box>
             </Box>
-         
+            {/* modal for profileOpen  */}
             <ModalWrapper
               open={open}
               onClose={() => setOpen(false)}
@@ -129,9 +130,51 @@ const ProfilePage = () => {
               variant="contained"
               color="primary"
               onClick={() => setOpen(true)}
+              sx={{
+                px: 4,
+                m: 3,
+                borderRadius: "20px",
+                backgroundColor: "#7C3AED",
+                "&:hover": {
+                  backgroundColor: "#5B21B6",
+                },
+              }}
             >
               Edit Profile
             </Button>
+
+            {/* modal for edit skills */}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setOpenSkills(true)}
+              sx={{
+                px: 4,
+                m: 3,
+                borderRadius: "20px",
+                backgroundColor: "#7C3AED",
+                "&:hover": {
+                  backgroundColor: "#5B21B6",
+                },
+              }}
+            >
+              Edit Skills
+            </Button>
+
+            <ModalWrapper
+              open={openSkills}
+              onClose={() => setOpenSkills(false)}
+              title="Edit Skills"
+              actions={
+                <Button onClick={() => setOpenSkills(false)}>Cancel</Button>
+              }
+            >
+              <EditSkills
+                user={user}
+                setUser={setUser}
+                closeModal={() => setOpenSkills(false)}
+              />
+            </ModalWrapper>
           </CardContent>
         </Card>
       </motion.div>

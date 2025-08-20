@@ -26,6 +26,9 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "manager", "user"],
       default: "user",
     },
+    pic:{
+      type:String,
+    },
     skillsOffered: {
       type: [String],
       default: [],
