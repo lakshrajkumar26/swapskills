@@ -17,7 +17,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 
-const allowedOrigin =["http://localhost:5173",process.env.FRONTEND_URL]
+const allowedOrigin =["http://localhost:5173",process.env.FRONTEND_URL,"https://swapskills-inky.vercel.app"]
 app.use(helmet());
 app.use(morgan("dev")); 
 
