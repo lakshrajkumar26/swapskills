@@ -6,7 +6,7 @@ Built with the **MERN stack**, it enables fair skill matching, leaderboard track
 ## Deployment Link https://swapskills-inky.vercel.app/
 ---
 
-## 🚀 Features  
+## 🚀 Features  -
 
 - 🔑 **Skill Matching Engine** → Pairs users based on rank, experience, and categories.  
 - 💬 **Real-Time Collaboration** → WebSockets for chat, quizzes, and multiplayer interactions.  
